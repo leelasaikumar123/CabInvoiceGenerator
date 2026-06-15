@@ -10,5 +10,12 @@ public static final double minFare=5;
 		return minFare;
 	}		
 	return totalFare;	
-	} 
+	}
+    public static double calculateFareForMultipleTrips(Ride[] rides){
+        double totalFare=0.0;
+    for(Ride ride : rides){
+        totalFare=totalFare+calculateFare(ride.getDistance(),ride.getMinutes());
+    }
+        return totalFare;
+    } 
 }
