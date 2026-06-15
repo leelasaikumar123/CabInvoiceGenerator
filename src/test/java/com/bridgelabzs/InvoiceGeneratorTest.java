@@ -21,5 +21,12 @@ class InvoiceGeneratorTest {
         Ride[] rides={ new Ride(20.0,15),new Ride(0.3,2),new Ride(5.0,3)};
         assertEquals(273.0,InvoiceGenerator.calculateFareForMultipleTrips(rides));
     }
+
+    @Test
+    void givenMultipleRidesMustReturnInvoiceSummary(){
+        Ride[] rides={ new Ride(20.0,15),new Ride(0.3,2),new Ride(5.0,3)};
+        InvoiceSummary summary=InvoiceGenerator.calculateTotalFare(rides);
+        assertEquals(new InvoiceSummary(3, 273.0, 91.0),summary);
+    }
 }
 

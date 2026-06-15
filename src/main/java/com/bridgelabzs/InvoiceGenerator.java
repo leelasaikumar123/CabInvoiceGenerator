@@ -18,4 +18,8 @@ public static final double minFare=5;
     }
         return totalFare;
     } 
+    public static InvoiceSummary calculateTotalFare(Ride[] rides){
+        double totalFare=calculateFareForMultipleTrips(rides);
+        return new InvoiceSummary(rides.length,totalFare,totalFare/rides.length);
+    }
 }
