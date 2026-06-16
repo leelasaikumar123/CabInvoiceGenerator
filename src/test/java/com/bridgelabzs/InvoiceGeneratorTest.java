@@ -28,5 +28,11 @@ class InvoiceGeneratorTest {
         InvoiceSummary summary=InvoiceGenerator.calculateTotalFare(rides);
         assertEquals(new InvoiceSummary(3, 273.0, 91.0),summary);
     }
+    @Test
+    void givenUserId_shouldReturn_InvoiceSummary() throws InvalidInputException{
+        String userId="U04";
+        InvoiceRecords expected = new InvoiceRecords("U04",8,480,60);
+        assertEquals(expected,InvoiceGenerator.findInvoice(userId));
+    }
 }
 
