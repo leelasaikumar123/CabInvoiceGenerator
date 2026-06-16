@@ -15,11 +15,11 @@ public static final double minFare=5;
 	return totalFare;	
 	}
     public static double calculateFareForMultipleTrips(Ride[] rides){
-        double totalFare=0.0;
-    for(Ride ride : rides){
-        totalFare=totalFare+calculateFare(ride.getDistance(),ride.getMinutes());
+       double totalFare = 0;
+    for (Ride ride : rides) {
+        totalFare += calculateFare(ride);
     }
-        return totalFare;
+    return totalFare;
     } 
     public static InvoiceSummary calculateTotalFare(Ride[] rides){
         double totalFare=calculateFareForMultipleTrips(rides);
@@ -43,7 +43,26 @@ public static final double minFare=5;
 		return user;    
 } catch (NullPointerException e) {
    throw new InvalidInputException("Invalid Input!No Records Found");
+}    
 }
-    
+public static double calculateFare(Ride ride) {
+
+    double costPerKm;
+    int costPerMinute;
+    double minimumFare;
+
+    if (ride.getRideType() == RideType.PREMIUM) {
+        costPerKm = 15;
+        costPerMinute = 2;
+        minimumFare = 20;
+    } else {
+        costPerKm = 10;
+        costPerMinute = 1;
+        minimumFare = 5;
+    }
+
+    double fare =ride.getDistance() * costPerKm + ride.getMinutes() * costPerMinute;
+
+    return Math.max(fare, minimumFare);
 }
 }
